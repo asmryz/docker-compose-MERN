@@ -4,7 +4,9 @@ Click on ADD NEW INSTANCE on left sidebar
 
 git clone https://github.com/asmryz/docker-compose-MERN.git
 
-type docker-compose up -d
+cd docker-compose-MERN/  
+
+docker-compose up -d
 
 docker exec datasheet bash -c "npm run build"
 
