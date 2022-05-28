@@ -68,19 +68,20 @@ export class DataSheet extends Component {
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Sem</th>
+                                        <th>Id</th>
                                         <th>Title</th>
+                                        <th>Sem</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {this.state.courses.map(c => (
                                         <tr key={c._id} style={{ cursor: 'pointer', userSelect: 'none', color: c.reg !== undefined ? '#d3d3d3' : 'black' }}>
-                                            <td>{c.semester}</td>
+                                            <td>{c.courseid}</td>
                                             {c.reg !== undefined
                                                 ? (<td>{c.code} {c.title}</td>)
                                                 : (<td onDoubleClick={() => this.handleClick(c.courseid)}>{c.code} {c.title}</td>)
                                             }
-
+                                            <td>{c.semester}</td>
                                         </tr>
                                     ))}
                                 </tbody>
