@@ -18,7 +18,8 @@
   "scripts": {
     "front-end": "react-scripts start",
     "back-end": "nodemon server.js",
-    "start": "concurrently \"npm run back-end\" \"npm run front-end\"",
+    "dev": "concurrently \"npm run back-end\" \"npm run front-end\"",
+    "start": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
