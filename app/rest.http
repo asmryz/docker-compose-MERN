@@ -1,0 +1,20 @@
+GET http://localhost:5000/api/courses HTTP/1.1
+
+###
+GET http://localhost:5000/api/courses/1112101 HTTP/1.1
+
+###
+GET http://localhost:5000/api/students/1112101 HTTP/1.1
+
+###
+GET http://localhost:5000/api/registrations/1112101 HTTP/1.1
+
+###
+POST http://localhost:5000/api/registrations/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "courseid": 1,
+    "regno": "1112102",
+    "gradeid": null
+}

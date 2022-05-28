@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+    mongodb:
+        container_name: mongo-db
+        image: mongo
+        ports:
+            - "27017:27017"
+
+    seed:
+        image: mongo
+        depends_on:
+            - mongodb
+        volumes:
+            - ./jsondata:/jsondata
+        command:
+            - /bin/bash
+            - -c
+            - |
+                mongoimport --jsonArray --uri "mongodb://mongodb:27017" -d datasheet -c grades --file /jsondata/grades.json 
+                mongoimport --jsonArray --uri "mongodb://mongodb:27017" -d datasheet -c courses --file /jsondata/courses.json 
+                mongoimport --jsonArray --uri "mongodb://mongodb:27017" -d datasheet -c registrations --file /jsondata/registrations.json
+                mongoimport --jsonArray --uri "mongodb://mongodb:27017" -d datasheet -c students --file /jsondata/students.json
+    
+    app:
+        image: node:16
+        working_dir: /usr/src/app
+        volumes:
+            - ./app:/usr/src/app
+        command: bash -c "npm install && npm start"
+        restart: unless-stopped
+        ports:
+            - 3000:3000
+            - 5000:5000
+        depends_on:
+            - mongodb
+        environment:
+            - DB_HOST=mongodb
+            - DB_NAME=datasheet
+        stdin_open: true
+        tty: true
