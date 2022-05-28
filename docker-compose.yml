@@ -24,6 +24,7 @@ services:
     
     app:
         image: node:16
+        container_name: datasheet
         working_dir: /usr/src/app
         volumes:
             - ./app:/usr/src/app
